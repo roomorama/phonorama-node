@@ -27,7 +27,7 @@ app.post '/', (req, res) ->
 app.post '/menu', (req, res) ->
 
 
-app.post '/paybyphone', (req, res) ->
+app.post '/pay-by-phone', (req, res) ->
   inquiryId = req.param('inquiry_id')
   resp = new twilio.TwimlResponse()
   resp.dial {method: 'POST', record: false}, ->
