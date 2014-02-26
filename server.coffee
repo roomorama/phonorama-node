@@ -1,12 +1,20 @@
 twilio = require 'twilio'
 express = require 'express'
 rest = require 'restler'
+roomoramaDb = require './app/roomorama_db'
+dotenv = require 'dotenv'
+dotenv.load();
+
 twilioMiddleware = twilio.webhook(validate: false)
 
 app = express()
 app.use express.urlencoded()
 app.use express.logger('dev')
 app.use twilioMiddleware
+
+# Initialize Stuff
+app.roomoramaDb = roomoramaDb
+app.roomoramaDb.connect();
 
 app.param "inquiry", (req, res, next, id) ->
   Inquiry.find id, (err, user) ->
@@ -68,4 +76,4 @@ app.post '/fallback', twilio.webhook(validate: false), (req, res) ->
   resp = new twilio.TwimlResponse()
   resp.say {voice: 'alice'}, 'Sorry, there was an error processing your call'
 
-app.listen(process.env.PORT || 3000)
+module.exports = app
