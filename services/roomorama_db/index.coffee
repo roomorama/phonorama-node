@@ -35,7 +35,7 @@ class RoomoramaDb
       self.defineModels(db)
 
   defineModels: (db) ->
-    models = fs.readdirSync(process.cwd()+'/app/models')
+    models = fs.readdirSync(__dirname + '/models')
     models.forEach (filename) ->
       modelName = _.camelize(filename)
       model = require('./models/' + filename)

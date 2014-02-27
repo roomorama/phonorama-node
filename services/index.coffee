@@ -1,0 +1,1 @@
+exports.InquiryValidator = require("./inquiry_validator")

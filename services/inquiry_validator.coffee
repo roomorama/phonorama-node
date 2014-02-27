@@ -1,4 +1,4 @@
-roomoramaDb = require '../../app/roomorama_db'
+roomoramaDb = require './roomorama_db'
 roomoramaDb.connect();
 
 exports.valid_for_call = (inquiry_id, callback) ->
