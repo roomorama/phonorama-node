@@ -4,17 +4,32 @@ fs = require('fs')
 
 class RoomoramaDb
   constructor: ->
+  dbConfig: ->
+    switch process.env.NODE_ENV
+      when 'production'
+        host: process.env.ROOMORAMA_DATABASE_HOST,
+        database: process.env.ROOMORAMA_DATABASE_NAME,
+        user: process.env.ROOMORAMA_DATABASE_USER,
+        protocol: "mysql",
+        query: { pool: true }
+      when 'staging'
+        host: process.env.ROOMORAMA_DATABASE_HOST,
+        database: process.env.ROOMORAMA_DATABASE_NAME,
+        user: process.env.ROOMORAMA_DATABASE_USER,
+        protocol: "mysql",
+        query: { pool: true }
+      else
+        host: 'localhost',
+        database: 'roomorama',
+        user: 'root',
+        port: '13306',
+        protocol: "mysql",
+        query: { pool: true },
+        socketPath: '/opt/boxen/data/mysql/socket'
 
   connect: ->
     self = @
-    db = orm.connect
-      host: "localhost",
-      database: "roomorama",
-      user: "root",
-      post: '13306',
-      protocol: "mysql",
-      query: { pool: true },
-      socketPath: '/opt/boxen/data/mysql/socket'
+    db = orm.connect @dbConfig()
 
     db.on "connect", (err) ->
       self.defineModels(db)
@@ -22,13 +37,9 @@ class RoomoramaDb
   defineModels: (db) ->
     models = fs.readdirSync(process.cwd()+'/app/models')
     models.forEach (filename) ->
-      modelName = @camelize(filename)
+      modelName = _.camelize(filename)
       model = require('./models/' + filename)
       @[modelName] = model.define(db)
     , @
 
-  camelize: (string) ->
-    string.replace(/\..*/,'').split(/[\W_-]/).map (pieces) ->
-      pieces.charAt(0).toUpperCase() + pieces.slice(1)
-    .join("")
 module.exports = new RoomoramaDb()
