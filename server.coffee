@@ -6,12 +6,11 @@ express = require 'express'
 rest    = require 'restler'
 routes  = require './routes'
 
-twilioMiddleware = twilio.webhook(validate: false)
+twilioMiddleware = twilio.webhook(validate: process.env.NODE_ENV == 'production')
 
 app = express()
 app.use express.urlencoded()
 app.use express.logger('dev')
-app.use express.json()
 app.use twilioMiddleware
 
 app.post '/', routes.index
