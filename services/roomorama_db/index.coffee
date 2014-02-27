@@ -6,26 +6,19 @@ class RoomoramaDb
   constructor: ->
   dbConfig: ->
     switch process.env.NODE_ENV
-      when 'production'
-        host: process.env.ROOMORAMA_DATABASE_HOST,
-        database: process.env.ROOMORAMA_DATABASE_NAME,
-        user: process.env.ROOMORAMA_DATABASE_USER,
-        protocol: "mysql",
-        query: { pool: true }
-      when 'staging'
-        host: process.env.ROOMORAMA_DATABASE_HOST,
-        database: process.env.ROOMORAMA_DATABASE_NAME,
-        user: process.env.ROOMORAMA_DATABASE_USER,
-        protocol: "mysql",
-        query: { pool: true }
-      else
+      when 'development'
         host: 'localhost',
         database: 'roomorama',
         user: 'root',
         port: '13306',
         protocol: "mysql",
-        query: { pool: true },
-        socketPath: '/opt/boxen/data/mysql/socket'
+        query: { pool: true }
+      else
+        host: process.env.DATABASE_HOST,
+        database: process.env.DATABASE_NAME,
+        user: process.env.DATABASE_USER,
+        protocol: "mysql",
+        query: { pool: true }
 
   connect: ->
     self = @
