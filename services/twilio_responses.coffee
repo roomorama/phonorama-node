@@ -1,6 +1,6 @@
 twilio = require 'twilio'
-config = require("#{process.cwd()}/config")()
-zendeskNumber = config.zendesk.phone_number
+config = require "#{process.cwd()}/config"
+zendeskNumber = config.zendesk.phoneNumber
 
 resp = ->
   new twilio.TwimlResponse()

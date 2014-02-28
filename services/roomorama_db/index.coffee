@@ -1,6 +1,7 @@
 require('mysql')
 orm = require('orm')
 fs = require('fs')
+_ = require "#{process.cwd()}/lib/underscore"
 
 class RoomoramaDb
   constructor: ->

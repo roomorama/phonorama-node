@@ -1,6 +1,3 @@
-require('./lib/utility')
-require('dotenv').load()
-
 twilio  = require 'twilio'
 express = require 'express'
 rest    = require 'restler'
