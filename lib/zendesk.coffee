@@ -2,36 +2,51 @@ zendesk = require 'node-zendesk'
 config = require "#{process.cwd()}/config"
 _ = require "#{process.cwd()}/lib/underscore"
 
-class zendeskApi
+class Zendesk
   apiClient: zendesk.createClient
     username: "zendesk@roomorama.com"
     token: config.zendesk.accessToken
     remoteUri: "https://roomorama.zendesk.com/api/v2"
 
-  updateTicket: (ticketId, params, callback) ->
-    apiClient.tickets.update ticketId, ticket: params, callback
+  inquiryIdField: (ticket) ->
+    _.find ticket.custom_fields, (field) ->
+      field.id == 21120254
 
-  repeatFindCall: (number, callback, timeStart = new Date().getTime()) ->
+  updateTicketInquiryId: (ticket, inquiryId, callback) ->
+    updatedTicket = _.clone(ticket)
+    @.inquiryIdField(updatedTicket).value = inquiryId
+    @.apiClient.tickets.update ticket.id, ticket: updatedTicket, callback
+
+  findCallAndUpdateInquiryId: (number, inquiryId, callback) ->
     self = @
-    unless _.timeSince(timeStart).getMinutes() > 2
-      findCallInRecentTickets number, (result) ->
+    @.findCall number, (ticket) ->
+      if ticket
+        self.updateTicketInquiryId ticket, inquiryId, callback
+      else
+        callback(null)
+
+  findCall: (number, callback, timeStart = new Date().getTime()) ->
+    self = @
+    if _.timeSince(timeStart).getMinutes() > 2
+      callback(null)
+    else
+      self.findCallInRecentTickets number, (result) ->
         if result
           callback(result)
         else
-          self.repeatFindCall(number, callback, timeStart)
+          self.delayFindCall(number, callback, timeStart)
+
+  delayFindCall: (number, callback, timeStart = new Date().getTime()) ->
+    setTimeout self.findCall(number, callback, timeStart), 500
 
   findCallInRecentTickets: (number, callback) ->
     self = @
     @.apiClient.tickets.listRecent (err, req, tickets) ->
-      callback(self.findCall number, tickets )
+      callback(self.findTicketWithNumber number, tickets )
 
-  findCall: (number, tickets) ->
-    tickets.forEach (ticket) ->
-      if ticket.via.channel == 'voice' && _.getNumbers(ticket.via.source.from.phone) == _.getNumbers(number)
-        ticket.id
-      else
-        null
-
+  findTicketWithNumber: (number, tickets) ->
+    _.find tickets, (ticket) ->
+      ticket.via.channel == 'voice' && _.getNumbers(ticket.via.source.from.phone) == _.getNumbers(number)
 
 
 
@@ -42,4 +57,4 @@ class zendeskApi
 # updateTicket
 
 
-module.exports = new zendeskApi()
+module.exports = new Zendesk()
