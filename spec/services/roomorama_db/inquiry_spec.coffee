@@ -1,14 +1,23 @@
 roomoramaDb = require "#{process.cwd()}/services/roomorama_db"
-roomoramaDb.connect()
+roomoramaDb.Inquiry.sync()
 
-describe 'Inquiry', ->
-  beforeEach ->
+describe "Inquiry", ->
+  it "is defined", ->
+    expect(roomoramaDb.Inquiry).toBeDefined()
 
-  it 'responds to get', ->
+  it "finds an inquiry from roomorama db", (done) ->
     waitsFor ->
-      roomoramaDb.Inquiry != undefined
-    , 'should have Inquiry defined', 1000
+      roomoramaDb.Inquiry.create state: "host_to_enter_code"
+      .success (task) ->
+        true
 
     runs ->
-      expect(typeof roomoramaDb.Inquiry.get).toEqual('function')
+      roomoramaDb.Inquiry.find(where:
+        state: "host_to_enter_code").success (inquiry) ->
+          expect(inquiry.state).toEqual("host_to_enter_code")
+          done()
 
+  it "returns null when inquiry is not found", (done) ->
+    roomoramaDb.Inquiry.find(1000).success (inquiry) ->
+      expect(inquiry).toEqual(undefined)
+      done()
