@@ -1,5 +1,5 @@
 roomoramaDb = require './roomorama_db'
-roomoramaDb.connect();
+roomoramaDb.connect()
 
 valid_for_call_states = ["cancelled", "guest_to_pay", "host_to_confirm"]
 
