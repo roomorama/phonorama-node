@@ -1,20 +1,20 @@
 rest = require 'restler'
 config = require "#{process.cwd()}/config"
 
-
-RoomoramaInternalAPI = rest.service ->
+RoomoramaInternalAPI = rest.service (->),
+  baseURL: config.roomoramaAPI.host
+  timeout: 15000
+  headers:
+    'Authorization': "Bearer #{config.roomoramaAPI.accessToken}"
 ,
-baseURL: config.roomoramaAPI.uri
-headers:
-  'Authorization': "Bearer #{config.roomoramaAPI.accessToken}"
-timeout: 1000,
-{ createTicket: (data, callback) ->
-    if data.inquiryId && data.ticketClass
-      @post "#{config.roomoramaAPI.uri}/tickets",
+  createTicket: (data, callback) ->
+    if data.inquiry_id && data.ticket_class
+      @post "/internal/v1.0/tickets",
         data: data
-      .on 'complete', callback
+      .on('complete', callback)
+      .on('timeout', (ms) ->
+        callback(error: "Timed out"))
     else
-      callback(error: "InquiryId and TicketClass must be defined")
-}
+      callback(error: "inquiry_id and ticket_class must be defined")
 
 module.exports = new RoomoramaInternalAPI()

@@ -18,7 +18,7 @@ configuration = ->
             maxIdleTime: 30
       roomoramaAPI:
         accessToken: process.env.ROOMORAMA_ACCESS_TOKEN
-        uri: 'https://api.roomorama.com/internal/v1'
+        host: 'https://api.roomorama.com/'
       zendesk:
         accessToken: process.env.ZENDESK_ACCESS_TOKEN
         phoneNumber: '+18627666553'
@@ -37,7 +37,7 @@ configuration = ->
             maxIdleTime: 30
       roomoramaAPI:
         accessToken: process.env.ROOMORAMA_ACCESS_TOKEN
-        uri: 'https://api.staging.roomorama.com/internal/v1'
+        host: 'https://api.staging.roomorama.com/'
       zendesk:
         accessToken: process.env.ZENDESK_ACCESS_TOKEN
         phoneNumber: '+14435525542'
@@ -56,7 +56,7 @@ configuration = ->
             maxIdleTime: 30
       roomoramaAPI:
         accessToken: process.env.ROOMORAMA_ACCESS_TOKEN
-        uri: 'http://api.roomorama.dev/internal/v1'
+        host: 'http://api.roomorama.dev/'
       zendesk:
         accessToken: process.env.ZENDESK_ACCESS_TOKEN
         phoneNumber: '+14435525542'
@@ -70,7 +70,7 @@ configuration = ->
           storage: ":memory:"
       roomoramaAPI:
         accessToken: process.env.ROOMORAMA_ACCESS_TOKEN
-        uri: 'http://api.roomorama.dev/internal/v1'
+        host: 'http://api.roomorama.dev/'
       zendesk:
         accessToken: process.env.ZENDESK_ACCESS_TOKEN
         phoneNumber: '+14435525542'
