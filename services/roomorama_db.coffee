@@ -1,10 +1,12 @@
 Sequelize = require("sequelize")
 config = require "#{process.cwd()}/config"
-roomoramaDb = config.roomoramaDb
 
-sequelize = new Sequelize roomoramaDb.database, roomoramaDb.user, roomoramaDb.password, roomoramaDb.options
+roomoramaDb = new Sequelize config.roomoramaDb.database,
+  config.roomoramaDb.user,
+  config.roomoramaDb.password,
+  config.roomoramaDb.options
 
-Inquiry = sequelize.define 'inquiries',
+Inquiry = roomoramaDb.define 'inquiries',
   id:
     type: Sequelize.INTEGER
     autoIncrement: true
