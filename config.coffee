@@ -16,6 +16,9 @@ configuration = ->
           pool:
             maxConnections: 10
             maxIdleTime: 30
+      roomoramaAPI:
+        accessToken: process.env.ROOMORAMA_ACCESS_TOKEN
+        uri: 'https://api.roomorama.com/internal/v1'
       zendesk:
         accessToken: process.env.ZENDESK_ACCESS_TOKEN
         phoneNumber: '+18627666553'
@@ -32,6 +35,9 @@ configuration = ->
           pool:
             maxConnections: 10
             maxIdleTime: 30
+      roomoramaAPI:
+        accessToken: process.env.ROOMORAMA_ACCESS_TOKEN
+        uri: 'https://api.staging.roomorama.com/internal/v1'
       zendesk:
         accessToken: process.env.ZENDESK_ACCESS_TOKEN
         phoneNumber: '+14435525542'
@@ -48,6 +54,9 @@ configuration = ->
           pool:
             maxConnections: 10
             maxIdleTime: 30
+      roomoramaAPI:
+        accessToken: process.env.ROOMORAMA_ACCESS_TOKEN
+        uri: 'http://api.roomorama.dev/internal/v1'
       zendesk:
         accessToken: process.env.ZENDESK_ACCESS_TOKEN
         phoneNumber: '+14435525542'
@@ -59,8 +68,11 @@ configuration = ->
             force: true
           dialect: "sqlite"
           storage: ":memory:"
+      roomoramaAPI:
+        accessToken: process.env.ROOMORAMA_ACCESS_TOKEN
+        uri: 'http://api.roomorama.dev/internal/v1'
       zendesk:
         accessToken: process.env.ZENDESK_ACCESS_TOKEN
         phoneNumber: '+14435525542'
-#"#{process.cwd()}/spec/fixtures/testdb.sqlite"
+
 module.exports = configuration()
