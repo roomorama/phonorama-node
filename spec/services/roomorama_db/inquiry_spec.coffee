@@ -6,10 +6,13 @@ describe "Inquiry", ->
     expect(roomoramaDb.Inquiry).toBeDefined()
 
   it "finds an inquiry from roomorama db", (done) ->
+    setupDone = false
+    runs ->
+      roomoramaDb.Inquiry.create(state: "host_to_enter_code").success (task) ->
+        setupDone = true
+
     waitsFor ->
-      roomoramaDb.Inquiry.create state: "host_to_enter_code"
-      .success (task) ->
-        true
+      setupDone == true
 
     runs ->
       roomoramaDb.Inquiry.find(where:
