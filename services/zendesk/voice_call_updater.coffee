@@ -3,11 +3,6 @@ apiClient = require './api_client'
 _ = require "#{process.cwd()}/lib/underscore"
 
 class VoiceCallUpdater
-  updateTicketInquiryId: (ticket, inquiryId, callback) ->
-    updatedTicket = _.clone(ticket)
-    helper.inquiryIdField(updatedTicket).value = inquiryId
-    apiClient.tickets.update ticket.id, ticket: updatedTicket, callback
-
   findCallAndUpdateInquiryId: (number, inquiryId, callback) ->
     self = @
     @.findCall number, (ticket) ->
@@ -15,6 +10,11 @@ class VoiceCallUpdater
         self.updateTicketInquiryId ticket, inquiryId, callback
       else
         callback(null)
+
+  updateTicketInquiryId: (ticket, inquiryId, callback) ->
+    updatedTicket = _.clone(ticket)
+    helper.inquiryIdField(updatedTicket).value = inquiryId
+    apiClient.tickets.update ticket.id, ticket: updatedTicket, callback
 
   findCall: (number, callback, timeStart = new Date().getTime()) ->
     self = @

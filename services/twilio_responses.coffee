@@ -50,4 +50,4 @@ exports.fallback = ->
 exports.hangUp = ->
   resp()
     .say({voice: "alice"}, "Goodbye.")
-    .hangUp()
+    .hangup()
