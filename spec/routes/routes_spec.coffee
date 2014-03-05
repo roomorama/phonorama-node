@@ -1,5 +1,7 @@
 routes = require "#{process.cwd()}/routes"
 twilioResponses = require "#{process.cwd()}/services/twilio_responses"
+callPolicy = require "#{process.cwd()}/services/call_policy"
+zendesk = require "#{process.cwd()}/services/zendesk"
 
 describe "routes", ->
   describe "inquiry", ->
@@ -12,10 +14,52 @@ describe "routes", ->
 
     res = send: jasmine.createSpy('res')
 
-    it "hangs up if repeat > 4", ->
-      req.params.repeat = 5
-      spyOn(twilioResponses, 'hangUp')
-      routes.booking.inquiry(req, res)
+    describe "with valid inquiry", ->
+      it "connects to zendesk and runs voiceCallUpdater", ->
+        req.params.repeat = 5
+        spyOn(twilioResponses, 'redirectToZendesk')
+        spyOn(zendesk.voiceCallUpdater, 'findCallAndUpdateInquiryId')
+        spyOn(callPolicy, 'inquiryValidForCall').andCallFake (inquiryId, callback) ->
+          callback(true)
 
-      expect(twilioResponses.hangUp).toHaveBeenCalled()
-      expect(res.send).toHaveBeenCalled()
+        runs ->
+          routes.booking.inquiry(req, res)
+
+        waitsFor ->
+          res.send.calls.length > 0
+
+        runs ->
+          expect(twilioResponses.redirectToZendesk).toHaveBeenCalled()
+          expect(zendesk.voiceCallUpdater.findCallAndUpdateInquiryId).toHaveBeenCalled()
+
+
+    describe "with invalid inquiry", ->
+      it "hangs up if repeat > 4", ->
+        req.params.repeat = 5
+        spyOn(twilioResponses, 'hangUp')
+        spyOn(callPolicy, 'inquiryValidForCall').andCallFake (inquiryId, callback) ->
+          callback(false)
+
+        runs ->
+          routes.booking.inquiry(req, res)
+
+        waitsFor ->
+          res.send.calls.length > 0
+
+        runs ->
+          expect(twilioResponses.hangUp).toHaveBeenCalled()
+
+      it "askes for a valid inquiry if repeat less than 5", ->
+        req.params.repeat = 2
+        spyOn(twilioResponses, 'invalidBookingId')
+        spyOn(callPolicy, 'inquiryValidForCall').andCallFake (inquiryId, callback) ->
+          callback(false)
+
+        runs ->
+          routes.booking.inquiry(req, res)
+
+        waitsFor ->
+          res.send.calls.length > 0
+
+        runs ->
+          expect(twilioResponses.invalidBookingId).toHaveBeenCalled()
