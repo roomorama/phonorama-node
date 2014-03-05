@@ -1,6 +1,5 @@
 twilio = require 'twilio'
 config = require "#{process.cwd()}/config"
-zendeskNumber = config.zendesk.phoneNumber
 
 resp = ->
   new twilio.TwimlResponse()
@@ -35,13 +34,12 @@ exports.invalidBookingId = (repeat = 1) ->
               @.say voice: 'alice', "That's not a valid booking ID. Please try again"
                 .pause length: 10
 
-
-exports.redirectToZendesk = (callerId) ->
+exports.redirectToZendesk = (params) ->
   callParams = {method: 'POST', record: false}
-  callParams.callerId = callerId if callerId
+  callParams.callerId = params.callerId if params.callerId
   resp()
     .dial callParams, ->
-      @.number zendeskNumber
+      @.number if params.line == 'support' then config.zendesk.supportNumber else config.zendesk.conversionNumber
 
 exports.fallback = ->
   resp()

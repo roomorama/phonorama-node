@@ -21,7 +21,10 @@ configuration = ->
         host: 'https://api.roomorama.com/'
       zendesk:
         accessToken: process.env.ZENDESK_ACCESS_TOKEN
-        phoneNumber: '+18627666553'
+        supportNumber: '+18627666553'
+        conversionNumber: '+18627666551'
+      rollbar:
+        post_server_item_access_token: process.env.ROLLBAR_POST_SERVER_ACCESS_TOKEN
     when 'staging'
       roomoramaDb:
         database: process.env.DATABASE_NAME
@@ -41,6 +44,7 @@ configuration = ->
       zendesk:
         accessToken: process.env.ZENDESK_ACCESS_TOKEN
         phoneNumber: '+14435525542'
+        conversionNumber: '+14435525542'
     when 'development'
       roomoramaDb:
         database: 'roomorama'
@@ -60,6 +64,7 @@ configuration = ->
       zendesk:
         accessToken: process.env.ZENDESK_ACCESS_TOKEN
         phoneNumber: '+14435525542'
+        conversionNumber: '+14435525542'
     else
       roomoramaDb:
         user: 'root'
@@ -74,5 +79,6 @@ configuration = ->
       zendesk:
         accessToken: process.env.ZENDESK_ACCESS_TOKEN
         phoneNumber: '+14435525542'
+        conversionNumber: '+14435525542'
 
 module.exports = configuration()

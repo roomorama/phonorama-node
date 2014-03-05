@@ -11,7 +11,9 @@ exports.menu = (req, res) ->
   if keyPressed is "1"
     res.send twilioResponses.enterBookingId()
   else if keyPressed is "2"
+    res.send twilioResponses.redirectToZendesk(line: 'conversion')
   else if keyPressed is "3"
+  else if keyPressed is "4"
   else if keyPressed is "5"
   else
 

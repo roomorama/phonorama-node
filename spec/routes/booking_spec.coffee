@@ -76,7 +76,7 @@ describe "routes", ->
         spyOn(roomoramaAPI, 'createTicket')
 
         routes.booking.payByPhone(req, res)
-        expect(twilioResponses.redirectToZendesk).toHaveBeenCalledWith("999999")
+        expect(twilioResponses.redirectToZendesk).toHaveBeenCalledWith(callerId: "999999")
         expect(zendesk.voiceCallUpdater.findCallAndUpdateInquiryId).toHaveBeenCalledWith("999999", "1234567", jasmine.any(Function))
         expect(roomoramaAPI.createTicket).toHaveBeenCalledWith({inquiry_id: '1234567', ticket_class: 'pay_by_phone'}, jasmine.any(Function))
 

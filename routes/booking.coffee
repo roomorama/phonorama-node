@@ -24,7 +24,7 @@ exports.payByPhone = (req, res) ->
   callerId = req.body.from
   payByPhoneTicket = null
 
-  res.send twilioResponses.redirectToZendesk callerId
+  res.send twilioResponses.redirectToZendesk callerId: callerId
   roomoramaAPI.createTicket { inquiry_id: inquiryId, ticket_class: 'pay_by_phone' }, (ticket) ->
                               payByPhoneTicket = ticket
 
