@@ -3,6 +3,7 @@ class Booking
     twilioResponses = dependencies.twilioResponses
     callPolicy = dependencies.callPolicy
     zendesk = dependencies.zendesk
+    roomoramaAPI = dependencies.roomoramaAPI
 
     @inquiry = (req, res) ->
       inquiryId = req.body.Digits
@@ -19,6 +20,17 @@ class Booking
           else
             repeat = parseInt(repeat) + 1
             res.send twilioResponses.invalidBookingId(repeat)
+
+    @payByPhone = (req, res) ->
+      inquiryId = req.body.inquiry_id
+      callerId = req.body.from
+
+      res.send twilioResponses.redirectToZendesk callerId
+      roomoramaAPI.createTicket inquiry_id: inquiryId,
+                                ticket_class: 'pay_by_phone'
+      zendesk.voiceCallUpdater.findCallAndUpdateInquiryId callerId, inquiryId, ->
+
+
 
 module.exports = (dependencies) ->
   new Booking(dependencies)
