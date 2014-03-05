@@ -1,23 +1,19 @@
-dependencies =
-  twilioResponses: require "#{process.cwd()}/services/twilio_responses"
-  callPolicy: require "#{process.cwd()}/services/call_policy"
-  zendesk: require "#{process.cwd()}/services/zendesk"
-  roomoramaAPI: require "#{process.cwd()}/services/roomorama_api"
+twilioResponses = require "#{process.cwd()}/services/twilio_responses"
 
-exports.booking = require("./booking")(dependencies)
+exports.booking = require("./booking")
 
 exports.index = (req, res) ->
-  res.send dependencies.twilioResponses.welcome()
+  res.send twilioResponses.welcome()
 
 exports.menu = (req, res) ->
   keyPressed = req.body.Digits
 
   if keyPressed is "1"
-    res.send dependencies.twilioResponses.enterBookingId()
+    res.send twilioResponses.enterBookingId()
   else if keyPressed is "2"
   else if keyPressed is "3"
   else if keyPressed is "5"
   else
 
 exports.fallback = (req, res) ->
-  res.send dependencies.twilioResponses.fallback()
+  res.send twilioResponses.fallback()

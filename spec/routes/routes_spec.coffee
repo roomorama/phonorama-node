@@ -77,5 +77,23 @@ describe "routes", ->
 
         routes.booking.payByPhone(req, res)
         expect(twilioResponses.redirectToZendesk).toHaveBeenCalledWith("999999")
-        expect(zendesk.voiceCallUpdater.findCallAndUpdateInquiryId).toHaveBeenCalledWith("999999", "1234567")
-        expect(roomoramaAPI.createTicket).toHaveBeenCalledWith({inquiry_id: '1234567', ticket_class: 'pay_by_phone'})
+        expect(zendesk.voiceCallUpdater.findCallAndUpdateInquiryId).toHaveBeenCalledWith("999999", "1234567", jasmine.any(Function))
+        expect(roomoramaAPI.createTicket).toHaveBeenCalledWith({inquiry_id: '1234567', ticket_class: 'pay_by_phone'}, jasmine.any(Function))
+
+      it "closes created payByPhoneTicket if findCallAndUpdateInquiryId is successful", ->
+        mockPayByPhoneTicket = {id: 12345, status: 'new'}
+        spyOn(twilioResponses, 'redirectToZendesk')
+        spyOn(zendesk.apiClient.tickets, 'update')
+        spyOn(zendesk.voiceCallUpdater, 'findCallAndUpdateInquiryId').andCallFake (callerId, InquiryId, callback) ->
+          callback(true)
+        spyOn(roomoramaAPI, 'createTicket').andCallFake (params, callback) ->
+          callback(mockPayByPhoneTicket)
+
+        runs ->
+          routes.booking.payByPhone(req, res)
+
+        waitsFor ->
+          zendesk.apiClient.tickets.update.calls.length > 0
+
+        runs ->
+          expect(mockPayByPhoneTicket.status).toEqual('closed')
