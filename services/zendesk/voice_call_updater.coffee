@@ -28,6 +28,7 @@ class VoiceCallUpdater
           self.delayFindCall(number, callback, timeStart)
 
   delayFindCall: (number, callback, timeStart = new Date().getTime()) ->
+    self = @
     setTimeout self.findCall(number, callback, timeStart), 500
 
   findCallInRecentTickets: (number, callback) ->
