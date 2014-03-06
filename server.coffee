@@ -15,7 +15,7 @@ if process.env == 'production'
   config = require './config'
   app.use config.rollbar.post_server_item_access_token
 
-app.get '/', (res, req) -> res.send 200
+app.get '/', (req, res) -> res.send 200
 app.post '/', routes.index
 app.post '/menu', routes.menu
 app.post '/fallback', routes.fallback
