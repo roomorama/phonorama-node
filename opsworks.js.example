@@ -1,0 +1,18 @@
+exports.customEnviroment =
+  { "app": {
+      "NODE_ENV": "development",
+      "PORT": "80"
+    },
+    "roomorama_db": {
+      "DATABASE_HOST": "somehost",
+      "DATABASE_NAME": "somename",
+      "DATABASE_PASSWORD": "somepassword",
+      "DATABASE_USER": "mayberoot"
+    },
+    "roomorama_api": {
+      "ROOMORAMA_ACCESS_TOKEN": "sometoken"
+    },
+    "zendesk": {
+      "ZENDESK_ACCESS_TOKEN": "sometoken"
+    },
+  };
