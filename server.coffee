@@ -1,6 +1,7 @@
 twilio  = require 'twilio'
 express = require 'express'
 routes  = require './routes'
+env = require('./opsworks').customEnvironment
 
 twilioMiddleware = twilio.webhook(validate: process.env.NODE_ENV == 'production')
 
@@ -20,4 +21,4 @@ app.post '/fallback', routes.fallback
 app.post '/booking/pay-by-phone', routes.booking.payByPhone
 app.post '/booking/inquiry/:repeat?', routes.booking.inquiry
 
-app.listen(process.env.PORT || 3000)
+app.listen(env.PORT || 3000)

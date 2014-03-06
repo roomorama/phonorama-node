@@ -1,8 +1,6 @@
 exports.customEnviroment =
-  { "app": {
-      "NODE_ENV": "development",
-      "PORT": "80"
-    },
+  { "NODE_ENV": "development",
+    "PORT": "80",
     "roomorama_db": {
       "DATABASE_HOST": "somehost",
       "DATABASE_NAME": "somename",

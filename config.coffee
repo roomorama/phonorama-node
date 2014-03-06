@@ -1,4 +1,4 @@
-env = require './opsworks'
+env = require('./opsworks').customEnvironment
 
 configuration = ->
   switch env.app.NODE_ENV
