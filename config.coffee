@@ -1,7 +1,8 @@
 env = require('./opsworks').customEnvironment
+process.env.NODE_ENV = env.NODE_ENV unless process.env.NODE_ENV
 
 configuration = ->
-  switch env.NODE_ENV
+  switch process.env.NODE_ENV
     when 'production'
       roomoramaDb:
         database: env.DATABASE_NAME
