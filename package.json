@@ -22,8 +22,7 @@
     "node-zendesk": "0.0.9",
     "underscore": "^1.6.0",
     "sequelize": "^1.7.0",
-    "rollbar": "~0.3.1",
-    "forever": "~0.10.11"
+    "rollbar": "~0.3.1"
   },
   "analyze": false,
   "devDependencies": {
