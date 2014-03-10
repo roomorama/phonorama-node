@@ -8,10 +8,10 @@ class VoiceCallUpdater
     self = @
     @.findCall number, (ticket) ->
       if ticket
-        log.info "#{(new Date()).toString} - found ticket: #{ticket.id} for number: #{number}, inquiry: #{inquiryId}"
+        logger.info "#{(new Date()).toString} - found ticket: #{ticket.id} for number: #{number}, inquiry: #{inquiryId}"
         self.updateTicketInquiryId ticket, inquiryId, callback
       else
-        log.info "#{(new Date()).toString} - failed to get ticket for number: #{number}, inquiry: #{inquiryId}"
+        logger.info "#{(new Date()).toString} - failed to get ticket for number: #{number}, inquiry: #{inquiryId}"
         callback(null)
 
   updateTicketInquiryId: (ticket, inquiryId, callback) ->

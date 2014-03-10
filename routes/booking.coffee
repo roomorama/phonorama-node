@@ -2,6 +2,7 @@ twilioResponses = require "#{process.cwd()}/services/twilio_responses"
 callPolicy = require "#{process.cwd()}/services/call_policy"
 zendesk = require "#{process.cwd()}/services/zendesk"
 roomoramaAPI = require "#{process.cwd()}/services/roomorama_api"
+logger = require "#{process.cwd()}/lib/custom_logger"
 
 exports.inquiry = (req, res) ->
   inquiryId = req.body.Digits
@@ -12,7 +13,7 @@ exports.inquiry = (req, res) ->
     if valid
       res.send twilioResponses.redirectToZendesk()
       zendesk.voiceCallUpdater.findCallAndUpdateInquiryId(phoneNumber, inquiryId, (ticket) ->
-        log.info "#{(new Date()).toString} - did not find ticket for phoneNumber: #{phoneNumber}, inquiryId: #{inquiryId}"
+        logger.info "#{(new Date()).toString} - did not find ticket for phoneNumber: #{phoneNumber}, inquiryId: #{inquiryId}"
       )
     else
       if repeat > 4
@@ -32,11 +33,11 @@ exports.payByPhone = (req, res) ->
 
   zendesk.voiceCallUpdater.findCallAndUpdateInquiryId callerId, inquiryId, (ticket) ->
     if ticket && payByPhoneTicket
-      log.info "#{(new Date()).toString} - closing ticket: #{payByPhoneTicket.id}"
+      logger.info "#{(new Date()).toString} - closing ticket: #{payByPhoneTicket.id}"
       payByPhoneTicket.status = 'closed'
       zendesk.apiClient.tickets.update payByPhoneTicket.id, payByPhoneTicket
     else
       if !payByPhoneTicket
-        log.info "#{(new Date()).toString} - did not find payByPhoneTicket for callerId: #{callerId}, inquiryId: #{inquiryId}"
+        logger.info "#{(new Date()).toString} - did not find payByPhoneTicket for callerId: #{callerId}, inquiryId: #{inquiryId}"
       else
-        log.info "#{(new Date()).toString} - did not find ticket for callerId: #{callerId}, inquiryId: #{inquiryId}"
+        logger.info "#{(new Date()).toString} - did not find ticket for callerId: #{callerId}, inquiryId: #{inquiryId}"
