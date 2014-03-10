@@ -1,0 +1,573 @@
+[
+  {
+    "url": "https://roomorama.zendesk.com/api/v2/tickets/270852.json",
+    "id": 270852,
+    "external_id": "1253265",
+    "via": {
+      "channel": "api",
+      "source": {
+        "from": {},
+        "to": {},
+        "rel": null
+      }
+    },
+    "created_at": "2014-02-28T05:01:49Z",
+    "updated_at": "2014-02-28T05:01:49Z",
+    "type": "task",
+    "subject": "Express: 1253265 - offer alternative.",
+    "description": "Room Title: [8383] Luxurious 3 Bedroom\\nRoom Address: Upper East Side, New York, NY 10028\\nCity: New York\\nCountry: United States\\nCheck In: 2014-04-18\\nCheck Out: 2014-04-22\\nGuest: Erwin Liao\\nHost: USA Stay\\nInquiry declined.",
+    "priority": "low",
+    "status": "new",
+    "recipient": null,
+    "requester_id": 323477875,
+    "submitter_id": 284342705,
+    "assignee_id": null,
+    "organization_id": null,
+    "group_id": 20553459,
+    "collaborator_ids": [],
+    "forum_topic_id": null,
+    "problem_id": null,
+    "has_incidents": false,
+    "due_at": "2014-03-02T05:01:48Z",
+    "tags": ["conversion_ticket", "express_booking", "gmt_plus_8", "guest", "north_america", "offer_alternative", "united_states"],
+    "custom_fields": [
+      {
+        "id": 21120254,
+        "value": "1253265"
+      },
+      {
+        "id": 21485379,
+        "value": ""
+      },
+      {
+        "id": 21158645,
+        "value": ""
+      },
+      {
+        "id": 21108299,
+        "value": ""
+      },
+      {
+        "id": 21136429,
+        "value": null
+      },
+      {
+        "id": 21098569,
+        "value": "246"
+      },
+      {
+        "id": 21157444,
+        "value": "0.955947"
+      },
+      {
+        "id": 21200075,
+        "value": "0.154185"
+      },
+      {
+        "id": 21156599,
+        "value": "8.0"
+      }
+    ],
+    "satisfaction_rating": null,
+    "sharing_agreement_ids": [],
+    "fields": [
+      {
+        "id": 21120254,
+        "value": "1253265"
+      },
+      {
+        "id": 21485379,
+        "value": ""
+      },
+      {
+        "id": 21158645,
+        "value": ""
+      },
+      {
+        "id": 21108299,
+        "value": ""
+      },
+      {
+        "id": 21136429,
+        "value": null
+      },
+      {
+        "id": 21098569,
+        "value": "246"
+      },
+      {
+        "id": 21157444,
+        "value": "0.955947"
+      },
+      {
+        "id": 21200075,
+        "value": "0.154185"
+      },
+      {
+        "id": 21156599,
+        "value": "8.0"
+      }
+    ]
+  },
+  {
+    "url": "https://roomorama.zendesk.com/api/v2/tickets/269750.json",
+    "id": 269750,
+    "external_id": "1274662",
+    "via": {
+      "channel": "api",
+      "source": {
+        "from": {},
+        "to": {},
+        "rel": null
+      }
+    },
+    "created_at": "2014-02-25T16:02:13Z",
+    "updated_at": "2014-02-27T16:02:30Z",
+    "type": "task",
+    "subject": "Regular: 1274662 - guest to pay.",
+    "description": "Room Title: 2/2 walk to beach South Beach\\nRoom Address: Miami Beach, Fl 33139\\nCity: Miami Beach\\nCountry: United States\\nCheck In: 2014-03-14\\nCheck Out: 2014-03-18\\nGuest: Angel Davis\\nHost: Yuliya Marchuk\\nInquiry confirmed at 2014-02-25 15:38:26 UTC",
+    "priority": "low",
+    "status": "solved",
+    "recipient": null,
+    "requester_id": 329192664,
+    "submitter_id": 284342705,
+    "assignee_id": 271043964,
+    "organization_id": null,
+    "group_id": 20553459,
+    "collaborator_ids": [],
+    "forum_topic_id": null,
+    "problem_id": null,
+    "has_incidents": false,
+    "due_at": "2014-02-27T16:02:12Z",
+    "tags": ["contact_host", "conversion_ticket", "guest", "guest_to_pay", "north_america", "not_applicable", "united_states", "unreachable", "utc"],
+    "custom_fields": [
+      {
+        "id": 21120254,
+        "value": "1274662"
+      },
+      {
+        "id": 21485379,
+        "value": ""
+      },
+      {
+        "id": 21158645,
+        "value": "unreachable"
+      },
+      {
+        "id": 21108299,
+        "value": "not_applicable"
+      },
+      {
+        "id": 21136429,
+        "value": null
+      },
+      {
+        "id": 21098569,
+        "value": "157"
+      },
+      {
+        "id": 21157444,
+        "value": "0.724409"
+      },
+      {
+        "id": 21200075,
+        "value": "0.377953"
+      },
+      {
+        "id": 21156599,
+        "value": "0.0"
+      }
+    ],
+    "satisfaction_rating": null,
+    "sharing_agreement_ids": [],
+    "fields": [
+      {
+        "id": 21120254,
+        "value": "1274662"
+      },
+      {
+        "id": 21485379,
+        "value": ""
+      },
+      {
+        "id": 21158645,
+        "value": "unreachable"
+      },
+      {
+        "id": 21108299,
+        "value": "not_applicable"
+      },
+      {
+        "id": 21136429,
+        "value": null
+      },
+      {
+        "id": 21098569,
+        "value": "157"
+      },
+      {
+        "id": 21157444,
+        "value": "0.724409"
+      },
+      {
+        "id": 21200075,
+        "value": "0.377953"
+      },
+      {
+        "id": 21156599,
+        "value": "0.0"
+      }
+    ]
+  },
+  {
+    "url": "https://roomorama.zendesk.com/api/v2/tickets/270814.json",
+    "id": 270814,
+    "external_id": "1272631",
+    "via": {
+      "channel": "api",
+      "source": {
+        "from": {},
+        "to": {},
+        "rel": null
+      }
+    },
+    "created_at": "2014-02-28T01:31:28Z",
+    "updated_at": "2014-02-28T05:00:11Z",
+    "type": "task",
+    "subject": "Regular: 1272631 - last minute.",
+    "description": "Room Title: Copacabana Beach 1 Bedroom\\nRoom Address: Copacabana & Leme, Rio de Janeiro, RJ 22011-010\\nCity: Rio de Janeiro\\nCountry: Brazil\\nCheck In: 2014-02-28\\nCheck Out: 2014-03-04\\nGuest: Jeff Peter\\nHost: Rick Nelson\\nInquiry check-in at 2014-02-28 02:00:00 -0300",
+    "priority": "normal",
+    "status": "closed",
+    "recipient": null,
+    "requester_id": 299141509,
+    "submitter_id": 284342705,
+    "assignee_id": null,
+    "organization_id": null,
+    "group_id": 20553459,
+    "collaborator_ids": [],
+    "forum_topic_id": null,
+    "problem_id": null,
+    "has_incidents": false,
+    "due_at": "2014-02-28T05:00:00Z",
+    "tags": ["brazil", "contact_host", "conversion_ticket", "gmt_minus_3", "host", "last_minute", "south_america"],
+    "custom_fields": [
+      {
+        "id": 21120254,
+        "value": "1272631"
+      },
+      {
+        "id": 21485379,
+        "value": ""
+      },
+      {
+        "id": 21158645,
+        "value": ""
+      },
+      {
+        "id": 21108299,
+        "value": ""
+      },
+      {
+        "id": 21136429,
+        "value": null
+      },
+      {
+        "id": 21098569,
+        "value": "89"
+      },
+      {
+        "id": 21157444,
+        "value": "0.833333"
+      },
+      {
+        "id": 21200075,
+        "value": "0.071429"
+      },
+      {
+        "id": 21156599,
+        "value": "-3.0"
+      }
+    ],
+    "satisfaction_rating": null,
+    "sharing_agreement_ids": [],
+    "fields": [
+      {
+        "id": 21120254,
+        "value": "1272631"
+      },
+      {
+        "id": 21485379,
+        "value": ""
+      },
+      {
+        "id": 21158645,
+        "value": ""
+      },
+      {
+        "id": 21108299,
+        "value": ""
+      },
+      {
+        "id": 21136429,
+        "value": null
+      },
+      {
+        "id": 21098569,
+        "value": "89"
+      },
+      {
+        "id": 21157444,
+        "value": "0.833333"
+      },
+      {
+        "id": 21200075,
+        "value": "0.071429"
+      },
+      {
+        "id": 21156599,
+        "value": "-3.0"
+      }
+    ],
+    "followup_ids": []
+  },
+  {
+    "url": "https://roomorama.zendesk.com/api/v2/tickets/251326.json",
+    "id": 251326,
+    "external_id": null,
+    "via": {
+      "channel": "voice",
+      "source": {
+        "from": {
+          "phone": "+18777507666",
+          "formatted_phone": "+1 (877) 750-7666",
+          "name": "Roomorama Admin"
+        },
+        "to": {
+          "phone": "+18627666553",
+          "formatted_phone": "Main Line",
+          "name": "Roomorama"
+        },
+        "rel": "inbound"
+      }
+    },
+    "created_at": "2014-01-08T12:36:48Z",
+    "updated_at": "2014-01-15T13:06:21Z",
+    "type": null,
+    "subject": "Phone Call from: Roomorama Admin",
+    "description": "Call from: +1 (877) 750-7666\\nTime of call: January 08, 2014 08:35:45 PM\\nAnswered by: ice aquino",
+    "priority": null,
+    "status": "closed",
+    "recipient": null,
+    "requester_id": 309916620,
+    "submitter_id": 271043964,
+    "assignee_id": 271043964,
+    "organization_id": 23748895,
+    "group_id": 20553459,
+    "collaborator_ids": [],
+    "forum_topic_id": null,
+    "problem_id": null,
+    "has_incidents": false,
+    "due_at": null,
+    "tags": ["guest", "host", "not_a_conversion_ticket", "not_applicable", "staging"],
+    "custom_fields": [
+      {
+        "id": 21120254,
+        "value": "1232514"
+      },
+      {
+        "id": 21485379,
+        "value": null
+      },
+      {
+        "id": 21158645,
+        "value": "not_a_conversion_ticket"
+      },
+      {
+        "id": 21108299,
+        "value": "not_applicable"
+      },
+      {
+        "id": 21136429,
+        "value": null
+      },
+      {
+        "id": 21098569,
+        "value": null
+      },
+      {
+        "id": 21157444,
+        "value": null
+      },
+      {
+        "id": 21200075,
+        "value": null
+      },
+      {
+        "id": 21156599,
+        "value": null
+      }
+    ],
+    "satisfaction_rating": null,
+    "sharing_agreement_ids": [],
+    "fields": [
+      {
+        "id": 21120254,
+        "value": "1232514"
+      },
+      {
+        "id": 21485379,
+        "value": null
+      },
+      {
+        "id": 21158645,
+        "value": "not_a_conversion_ticket"
+      },
+      {
+        "id": 21108299,
+        "value": "not_applicable"
+      },
+      {
+        "id": 21136429,
+        "value": null
+      },
+      {
+        "id": 21098569,
+        "value": null
+      },
+      {
+        "id": 21157444,
+        "value": null
+      },
+      {
+        "id": 21200075,
+        "value": null
+      },
+      {
+        "id": 21156599,
+        "value": null
+      }
+    ],
+    "followup_ids": [],
+    "result_type": "ticket"
+  },
+  {
+    "url": "https://roomorama.zendesk.com/api/v2/tickets/12973.json",
+    "id": 12973,
+    "external_id": null,
+    "via": {
+      "channel": "voice",
+      "source": {
+        "from": {
+          "phone": "+16617480240",
+          "formatted_phone": "+1 (661) 748-0240",
+          "name": "Caller +1 (661) 748-0240"
+        },
+        "to": {
+          "phone": "+18627666553",
+          "formatted_phone": "Main Line",
+          "name": "Roomorama"
+        },
+        "rel": "inbound"
+      }
+    },
+    "created_at": "2013-12-12T21:07:26Z",
+    "updated_at": "2013-12-16T22:01:45Z",
+    "type": null,
+    "subject": "Phone Call from: Caller +1 (661) 748-0240",
+    "description": "Call from: +1 (661) 748-0240\\nTime of call: December 13, 2013 05:06:53 AM\\nAnswered by: Michael Dela Peña",
+    "priority": null,
+    "status": "closed",
+    "recipient": null,
+    "requester_id": 281726349,
+    "submitter_id": 288263375,
+    "assignee_id": 288263375,
+    "organization_id": null,
+    "group_id": 20553459,
+    "collaborator_ids": [],
+    "forum_topic_id": null,
+    "problem_id": null,
+    "has_incidents": false,
+    "due_at": null,
+    "tags": ["not_a_conversion_ticket", "not_applicable"],
+    "custom_fields": [
+      {
+        "id": 21120254,
+        "value": "88888"
+      },
+      {
+        "id": 21485379,
+        "value": null
+      },
+      {
+        "id": 21158645,
+        "value": "not_a_conversion_ticket"
+      },
+      {
+        "id": 21108299,
+        "value": "not_applicable"
+      },
+      {
+        "id": 21136429,
+        "value": null
+      },
+      {
+        "id": 21098569,
+        "value": null
+      },
+      {
+        "id": 21157444,
+        "value": null
+      },
+      {
+        "id": 21200075,
+        "value": null
+      },
+      {
+        "id": 21156599,
+        "value": "+8"
+      }
+    ],
+    "satisfaction_rating": null,
+    "sharing_agreement_ids": [],
+    "fields": [
+      {
+        "id": 21120254,
+        "value": "88888"
+      },
+      {
+        "id": 21485379,
+        "value": null
+      },
+      {
+        "id": 21158645,
+        "value": "not_a_conversion_ticket"
+      },
+      {
+        "id": 21108299,
+        "value": "not_applicable"
+      },
+      {
+        "id": 21136429,
+        "value": null
+      },
+      {
+        "id": 21098569,
+        "value": null
+      },
+      {
+        "id": 21157444,
+        "value": null
+      },
+      {
+        "id": 21200075,
+        "value": null
+      },
+      {
+        "id": 21156599,
+        "value": "+8"
+      }
+    ],
+    "followup_ids": [],
+    "result_type": "ticket"
+  }
+]

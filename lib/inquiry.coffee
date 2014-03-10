@@ -1,2 +1,0 @@
-class Inquiry
-  constructor: (params) ->

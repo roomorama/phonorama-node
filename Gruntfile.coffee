@@ -2,7 +2,6 @@ module.exports = (grunt) ->
   @loadNpmTasks('grunt-express-server')
   @loadNpmTasks('grunt-contrib-watch')
 
-
   grunt.initConfig
     express:
       options:
