@@ -13,7 +13,7 @@ exports.inquiry = (req, res) ->
     if valid
       res.send twilioResponses.redirectToZendesk()
       zendesk.voiceCallUpdater.findCallAndUpdateInquiryId(phoneNumber, inquiryId, (ticket) ->
-        logger.info "#{(new Date()).toString} - did not find ticket for phoneNumber: #{phoneNumber}, inquiryId: #{inquiryId}"
+        logger.info "did not find ticket for phoneNumber: #{phoneNumber}, inquiryId: #{inquiryId}"
       )
     else
       if repeat > 4
@@ -33,11 +33,9 @@ exports.payByPhone = (req, res) ->
 
   zendesk.voiceCallUpdater.findCallAndUpdateInquiryId callerId, inquiryId, (ticket) ->
     if ticket && payByPhoneTicket
-      logger.info "#{(new Date()).toString} - closing ticket: #{payByPhoneTicket.id}"
+      logger.info "closing ticket: #{payByPhoneTicket.id}"
       payByPhoneTicket.status = 'closed'
       zendesk.apiClient.tickets.update payByPhoneTicket.id, payByPhoneTicket
     else
       if !payByPhoneTicket
-        logger.info "#{(new Date()).toString} - did not find payByPhoneTicket for callerId: #{callerId}, inquiryId: #{inquiryId}"
-      else
-        logger.info "#{(new Date()).toString} - did not find ticket for callerId: #{callerId}, inquiryId: #{inquiryId}"
+        logger.info "did not find payByPhoneTicket for callerId: #{callerId}, inquiryId: #{inquiryId}"
