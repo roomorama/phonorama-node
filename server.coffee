@@ -2,13 +2,14 @@ twilio  = require 'twilio'
 express = require 'express'
 routes  = require './routes'
 dotenv = require 'dotenv'
+logger = require './lib/custom_logger'
 dotenv.load()
 
 twilioMiddleware = twilio.webhook(validate: process.env.NODE_ENV == 'production')
 
 app = express()
 app.use express.urlencoded()
-app.use express.logger('dev')
+app.use logger
 app.use twilioMiddleware
 
 if process.env.NODE_ENV == 'production'
@@ -23,4 +24,4 @@ app.post '/fallback', routes.fallback
 app.post '/booking/pay-by-phone', routes.booking.payByPhone
 app.post '/booking/inquiry/:repeat?', routes.booking.inquiry
 
-app.listen(process.env.PORT || 3000)
+app.listen(process.env.PORT || 3001)
