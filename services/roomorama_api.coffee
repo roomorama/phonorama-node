@@ -4,6 +4,7 @@ config = require "#{process.cwd()}/config"
 RoomoramaInternalAPI = rest.service (->),
   baseURL: config.roomoramaAPI.host
   timeout: 15000
+  rejectUnauthorized: process.env.NODE_ENV == 'production'
   headers:
     'Authorization': "Bearer #{config.roomoramaAPI.accessToken}"
 ,

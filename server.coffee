@@ -2,7 +2,7 @@ twilio  = require 'twilio'
 express = require 'express'
 routes  = require './routes'
 dotenv = require 'dotenv'
-logger = require './lib/custom_logger'
+logger = require './lib/access_logger'
 dotenv.load()
 
 twilioMiddleware = twilio.webhook(validate: process.env.NODE_ENV == 'production')

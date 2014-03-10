@@ -1,5 +1,6 @@
 helper = require './helper'
 apiClient = require './api_client'
+logger = require "#{process.cwd()}/lib/custom_logger"
 _ = require "#{process.cwd()}/lib/underscore"
 
 class VoiceCallUpdater
@@ -7,8 +8,10 @@ class VoiceCallUpdater
     self = @
     @.findCall number, (ticket) ->
       if ticket
+        log.info "#{(new Date()).toString} - found ticket: #{ticket.id} for number: #{number}, inquiry: #{inquiryId}"
         self.updateTicketInquiryId ticket, inquiryId, callback
       else
+        log.info "#{(new Date()).toString} - failed to get ticket for number: #{number}, inquiry: #{inquiryId}"
         callback(null)
 
   updateTicketInquiryId: (ticket, inquiryId, callback) ->
@@ -22,7 +25,6 @@ class VoiceCallUpdater
       callback(null)
     else
       self.findCallInRecentTickets number, (result) ->
-        console.log number, result
         if result
           callback(result)
         else
@@ -30,7 +32,7 @@ class VoiceCallUpdater
 
   delayFindCall: (number, callback, timeStart = new Date().getTime()) ->
     self = @
-    setTimeout self.findCall(number, callback, timeStart), 500
+    setTimeout self.findCall(number, callback, timeStart), 1000
 
   findCallInRecentTickets: (number, callback) ->
     self = @

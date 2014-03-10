@@ -11,7 +11,9 @@ exports.inquiry = (req, res) ->
   callPolicy.inquiryValidForCall inquiryId, (valid, inquiry) ->
     if valid
       res.send twilioResponses.redirectToZendesk()
-      zendesk.voiceCallUpdater.findCallAndUpdateInquiryId(phoneNumber, inquiryId, (ticket) -> console.log(ticket))
+      zendesk.voiceCallUpdater.findCallAndUpdateInquiryId(phoneNumber, inquiryId, (ticket) ->
+        log.info "#{(new Date()).toString} - did not find ticket for phoneNumber: #{phoneNumber}, inquiryId: #{inquiryId}"
+      )
     else
       if repeat > 4
         res.send twilioResponses.hangUp()
@@ -26,9 +28,15 @@ exports.payByPhone = (req, res) ->
 
   res.send twilioResponses.redirectToZendesk callerId: callerId
   roomoramaAPI.createTicket { inquiry_id: inquiryId, ticket_class: 'pay_by_phone' }, (ticket) ->
-                              payByPhoneTicket = ticket
+    payByPhoneTicket = ticket
 
   zendesk.voiceCallUpdater.findCallAndUpdateInquiryId callerId, inquiryId, (ticket) ->
     if ticket && payByPhoneTicket
+      log.info "#{(new Date()).toString} - closing ticket: #{payByPhoneTicket.id}"
       payByPhoneTicket.status = 'closed'
       zendesk.apiClient.tickets.update payByPhoneTicket.id, payByPhoneTicket
+    else
+      if !payByPhoneTicket
+        log.info "#{(new Date()).toString} - did not find payByPhoneTicket for callerId: #{callerId}, inquiryId: #{inquiryId}"
+      else
+        log.info "#{(new Date()).toString} - did not find ticket for callerId: #{callerId}, inquiryId: #{inquiryId}"
