@@ -5,19 +5,22 @@ dotenv = require 'dotenv'
 logger = require './lib/access_logger'
 dotenv.load()
 
-twilioMiddleware = twilio.webhook(validate: process.env.NODE_ENV == 'production')
-
 app = express()
 app.use express.urlencoded()
 app.use logger
-app.use twilioMiddleware
 
 if process.env.NODE_ENV == 'production'
-  rollbar = require 'rollbar'
-  config = require './config'
-  app.use config.rollbar.post_server_item_access_token
+  errorHandler = require('./lib/error_handler')
+  app.use errorHandler
 
 app.get '/', (req, res) -> res.send 200
+
+# Secure all post methods wth webhook
+app.use twilio.webhook(process.env.TWILIO_AUTH_TOKEN,
+                         validate: process.env.NODE_ENV == 'production'
+                         host: 'phone.roomorama.io'
+                         protocol: 'https')
+
 app.post '/', routes.index
 app.post '/menu', routes.menu
 app.post '/fallback', routes.fallback
