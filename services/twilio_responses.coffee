@@ -19,23 +19,19 @@ exports.invalidMenu = ->
   resp()
     .gather({action: "/menu", finishOnKey: '#', timeout: 5}, ->
       @.say(voice: 'alice', "That's not a valid menu selection. Please try again")
-        .pause length: 2)
+        .pause length: 10)
 
 exports.enterBookingId = (repeat = 1) ->
   resp()
-    .gather action: "/booking/inquiry/#{repeat}",
-            finishOnKey: '#',
-            timeout: 5, ->
+    .gather({action: "/booking/inquiry/#{repeat}", finishOnKey: '#', timeout: 5}, ->
               @.say(voice: 'alice', "Please enter your booking ID.")
-              .pause length: 10
+                .pause(length: 10))
 
 exports.invalidBookingId = (repeat = 1) ->
   resp()
-    .gather action: "/booking/inquiry/#{repeat}",
-            finishOnKey: '#',
-            timeout: 5, ->
+    .gather({action: "/booking/inquiry/#{repeat}", finishOnKey: '#', timeout: 5}, ->
               @.say(voice: 'alice', "That's not a valid booking ID. Please try again")
-              .pause length: 10
+                .pause(length: 10))
 
 exports.redirectToZendesk = (params = {}) ->
   params.line = 'support' unless params.line
