@@ -15,23 +15,30 @@ exports.welcome = ->
         .say({voice: 'alice'}, "To repeat this menu, press the star key...")
     )
 
+exports.invalidMenu = ->
+  resp()
+    .gather({action: "/menu", finishOnKey: '#', timeout: 5} ->
+      @.say(voice: 'alice', "That's not a valid menu selection. Please try again")
+        .pause length: 2)
+
 exports.enterBookingId = (repeat = 1) ->
   resp()
     .gather action: "/booking/inquiry/#{repeat}",
             finishOnKey: '#',
             timeout: 5, ->
-              @.say voice: 'alice', "Please enter your booking ID."
-                .pause length: 10
+              @.say(voice: 'alice', "Please enter your booking ID.")
+              .pause length: 10
 
 exports.invalidBookingId = (repeat = 1) ->
   resp()
     .gather action: "/booking/inquiry/#{repeat}",
             finishOnKey: '#',
             timeout: 5, ->
-              @.say voice: 'alice', "That's not a valid booking ID. Please try again"
-                .pause length: 10
+              @.say(voice: 'alice', "That's not a valid booking ID. Please try again")
+              .pause length: 10
 
-exports.redirectToZendesk = (params) ->
+exports.redirectToZendesk = (params = {}) ->
+  params.line = 'support' unless params.line
   callParams = {method: 'POST', record: false}
   callParams.callerId = params.callerId if params.callerId
   resp()

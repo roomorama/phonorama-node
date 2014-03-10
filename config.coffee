@@ -43,7 +43,7 @@ configuration = ->
         host: 'https://api.staging.roomorama.com/'
       zendesk:
         accessToken: process.env.ZENDESK_ACCESS_TOKEN
-        phoneNumber: '+14435525542'
+        supportNumber: '+14435525542'
         conversionNumber: '+14435525542'
     when 'development'
       roomoramaDb:
@@ -63,7 +63,7 @@ configuration = ->
         host: 'http://api.roomorama.dev/'
       zendesk:
         accessToken: process.env.ZENDESK_ACCESS_TOKEN
-        phoneNumber: '+14435525542'
+        supportNumber: '+14435525542'
         conversionNumber: '+14435525542'
     else
       roomoramaDb:
@@ -78,7 +78,7 @@ configuration = ->
         host: 'http://api.roomorama.dev/'
       zendesk:
         accessToken: process.env.ZENDESK_ACCESS_TOKEN
-        phoneNumber: '+14435525542'
+        supportNumber: '+14435525542'
         conversionNumber: '+14435525542'
 
 module.exports = configuration()
