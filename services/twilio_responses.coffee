@@ -14,24 +14,28 @@ exports.welcome = ->
         .say({voice: 'alice'}, "A member of our customer support team will respond as soon as possible...")
         .say({voice: 'alice'}, "To repeat this menu, press the star key...")
     )
+  .toString()
 
 exports.invalidMenu = ->
   resp()
     .gather({action: "/menu", finishOnKey: '#', timeout: 5}, ->
       @.say(voice: 'alice', "That's not a valid menu selection. Please try again")
         .pause length: 10)
+  .toString()
 
 exports.enterBookingId = (repeat = 1) ->
   resp()
     .gather({action: "/booking/inquiry/#{repeat}", finishOnKey: '#', timeout: 5}, ->
               @.say(voice: 'alice', "Please enter your booking ID.")
                 .pause(length: 10))
+  .toString()
 
 exports.invalidBookingId = (repeat = 1) ->
   resp()
     .gather({action: "/booking/inquiry/#{repeat}", finishOnKey: '#', timeout: 5}, ->
               @.say(voice: 'alice', "That's not a valid booking ID. Please try again")
                 .pause(length: 10))
+  .toString()
 
 exports.redirectToZendesk = (params = {}) ->
   params.line = 'support' unless params.line
@@ -40,12 +44,15 @@ exports.redirectToZendesk = (params = {}) ->
   resp()
     .dial callParams, ->
       @.number if params.line == 'support' then config.zendesk.supportNumber else config.zendesk.conversionNumber
+  .toString()
 
 exports.fallback = ->
   resp()
     .say {voice: 'alice'}, 'Sorry, there was an error processing your call'
+  .toString()
 
 exports.hangUp = ->
   resp()
     .say({voice: "alice"}, "Goodbye.")
     .hangup()
+  .toString()
