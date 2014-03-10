@@ -10,7 +10,7 @@ exports.inquiry = (req, res) ->
 
   callPolicy.inquiryValidForCall inquiryId, (valid, inquiry) ->
     if valid
-      res.send twilioResponses.redirectToZendesk
+      res.send twilioResponses.redirectToZendesk()
       zendesk.voiceCallUpdater.findCallAndUpdateInquiryId(phoneNumber, inquiryId, (ticket) -> console.log(ticket))
     else
       if repeat > 4

@@ -3,7 +3,7 @@ apiClient = require './api_client'
 _ = require "#{process.cwd()}/lib/underscore"
 
 class VoiceCallUpdater
-  findCallAndUpdateInquiryId: (number, inquiryId, callback) ->
+  findCallAndUpdateInquiryId: (number, inquiryId, callback = ()->) ->
     self = @
     @.findCall number, (ticket) ->
       if ticket
@@ -22,6 +22,7 @@ class VoiceCallUpdater
       callback(null)
     else
       self.findCallInRecentTickets number, (result) ->
+        console.log number, result
         if result
           callback(result)
         else

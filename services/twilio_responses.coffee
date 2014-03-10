@@ -17,7 +17,7 @@ exports.welcome = ->
 
 exports.invalidMenu = ->
   resp()
-    .gather({action: "/menu", finishOnKey: '#', timeout: 5} ->
+    .gather({action: "/menu", finishOnKey: '#', timeout: 5}, ->
       @.say(voice: 'alice', "That's not a valid menu selection. Please try again")
         .pause length: 2)
 
