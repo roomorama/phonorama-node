@@ -10,7 +10,7 @@ exports.welcome = ->
     .gather({action: '/menu', repeat: true, timeout: 5, numDigits: 1}, ->
       @.say({voice: 'alice'}, "For questions regarding an existing inquiry or booking; press 1.")
         .say({voice: 'alice'}, "If you're calling to rent a room, apartment, or house; press 2.")
-        .say({voice: 'alice'}, "For media and all other enquiries, please email info @ Room'orama .com.")
+        .say({voice: 'alice'}, "For media and all other enquiries, please email info @ Room'orama dot com.")
         .say({voice: 'alice'}, "A member of our customer support team will respond as soon as possible...")
         .say({voice: 'alice'}, "To repeat this menu, press the star key...")
     )
