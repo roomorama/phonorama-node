@@ -1,6 +1,6 @@
 roomoramaDb = require './roomorama_db'
 
-valid_for_call_states = ["cancelled", "guest_to_pay", "host_to_confirm"]
+valid_for_call_states = ["cancelled", "guest_to_pay", "host_to_confirm", "booked_with_partner", "host_to_enter_code"]
 
 exports.inquiryValidForCall = (inquiry_id, callback) ->
   roomoramaDb.Inquiry.find(inquiry_id).success (inquiry) ->
