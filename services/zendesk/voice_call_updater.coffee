@@ -22,7 +22,7 @@ class VoiceCallUpdater
 
   findCall: (number, callback, timeStart = new Date().getTime()) ->
     self = @
-    if _.timeSince(timeStart).getMinutes() > 2
+    if _.timeSince(timeStart).getSeconds() > 5
       callback(null)
     else
       self.findCallInRecentTickets number, (result) ->
