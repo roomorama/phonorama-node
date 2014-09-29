@@ -5,13 +5,14 @@ _ = require "#{process.cwd()}/lib/underscore"
 
 class VoiceCallUpdater
   findCallAndUpdateInquiryId: (number, inquiryId, callback = ()->) ->
+    logger.info "looking for ticket from number - #{number}, inquiry - #{inquiryId}"
     self = @
     @.findCall number, (ticket) ->
       if ticket
-        logger.info "found ticket: #{ticket.id} for number: #{number}, inquiry: #{inquiryId}"
+        logger.info "found ticket - #{ticket.id} for number - #{number}, inquiry - #{inquiryId}"
         self.updateTicketInquiryId ticket, inquiryId, callback
       else
-        logger.info "failed to find ticket for number: #{number}, inquiry: #{inquiryId}"
+        logger.info "failed to find ticket: number - #{number}, inquiry - #{inquiryId}"
         callback(null)
 
   updateTicketInquiryId: (ticket, inquiryId, callback) ->

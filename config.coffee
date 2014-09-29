@@ -52,9 +52,9 @@ configuration = ->
         options:
           sync:
             force: false
-          port: '13306'
-          host: 'localhost'
           dialect: "mysql"
+          dialectOptions:
+            socketPath: '/opt/boxen/data/mysql/socket'
           pool:
             maxConnections: 10
             maxIdleTime: 30

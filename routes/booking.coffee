@@ -9,6 +9,7 @@ exports.inquiry = (req, res) ->
   phoneNumber = req.body.From
   repeat = req.params.repeat || 1
 
+  logger.debug "reqest body: #{JSON.stringify(req.body)}"
   callPolicy.inquiryValidForCall inquiryId, (valid, inquiry) ->
     if valid
       res.send twilioResponses.redirectToZendesk()
