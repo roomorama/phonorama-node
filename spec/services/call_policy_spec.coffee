@@ -9,8 +9,7 @@ describe "callPolicy", ->
       inquiry = null
 
       runs ->
-        roomoramaDb.Inquiry.create state: "host_to_confirm"
-        .success (result) ->
+        roomoramaDb.Inquiry.create(state: "host_to_confirm").success (result) ->
           inquiry = result
 
       waitsFor ->
