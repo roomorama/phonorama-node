@@ -63,9 +63,9 @@ describe "voiceCallUpdater", ->
       beforeEach ->
         spyOn(voiceCallUpdater, 'findCallInRecentTickets')
 
-      it 'does nothing if startTime is 2 minutes before current time', ->
+      it 'does nothing if startTime is 5 seconds before current time', ->
         mockCallBack = jasmine.createSpy('mockCallBack')
-        timeStart = new Date().getTime() - 1000 * 60 * 2 - 500
+        timeStart = new Date().getTime() - 1000 * 5 - 500
 
         voiceCallUpdater.findCall('123', mockCallBack, timeStart)
         expect(voiceCallUpdater.findCallInRecentTickets.calls.length).toEqual(0);
